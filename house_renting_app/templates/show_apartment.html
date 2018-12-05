@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+
+
+
+
+    <title>Show Apartments</title>
+	 <style>
+  #box{
+    box-shadow: 1px 3px 5px grey;
+  }
+  #box:hover{
+    box-shadow: 1px 8px 20px darkgrey;
+    -webkit-transition: box-shadow.6s ease-out;"
+  }
+</style>
+  </head>
+  <body style="font-family: 'Merriweather', serif;">
+<br>
+    <div class="container">
+<br><br>
+<div class="jumbotron">
+  <h1>{{ show.address }}</h1></div>
+<center>
+<h1>{{ show.apartment_name }}</h1></center>
+<hr>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="height:500px;">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" style="height:500px" src="{{ show.images1.url }}" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" style="height:500px" src="{{ show.images2.url }}" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" style="height:500px" src="{{ show.images3.url }}" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<br>
+<center><h2>Apartment Details</h2></center><hr>
+
+<div id="box">
+  <center>
+  <div class="row">
+    <div class="col">
+      <h6><b>Apartment Name:</b></h6>
+      <p>{{ show.apartment_name }}<p>
+        <h6><b>Carpet Area:</b></h6>
+        <p>{{ show.apartment_carpet_area }}sq.fts</p>
+        <h6><b>Overlooking:</b></h6>
+        <p>{{ show.apartment_overlooking }}</p>
+        <h6><b>Car Parking:</b></h6>
+        <p>{{ show.apartment_parking }}</p>
+    </div>
+    <div class="col">
+      <h6><b>Apartment Type:</b></h6>
+      <p>{{ show.apartment_type }}</p>
+      <h6><b>Tenants Prefered:</b></h6>
+      <p>{{ show.apartment_tenants }}</p>
+      <h6><b>Maintainance Cost:</b></h6>
+      <p>Rs.{{ show.apartment_maintainance_cost }}</p>
+      <h6><b>Price</b></h6>
+      <p>Rs.{{ show.apartment_price }}</p>
+    </div>
+    <div class="col">
+    <h6><b>Super Buildup Area:</b></h6>
+    <p>{{ show.super_buildup_area }}sq.fts</p>
+      <h6><b>Furnishing:</b></h6>
+      <p>{{ show.apartment_furnishing }}</p>
+      <h6><b>Floor No.:</b></h6>
+      <p>{{ show.apartment_floor_no }}</p>
+    </div>
+  </div>
+</center>
+</div>
+<br>
+<center><h2>Contact the Owner</h2></center><hr>
+<div id="box">
+    <center>
+  <br>
+  <div class="row">
+      <div class="col">
+        <h6><b>Owner's Name:</b></strong></h6>
+          <p>{{ show.apartment_owner_name }}</p>
+      </div>
+      <div class="col">
+      <h6><b>Contact No:</b></h6>
+
+      <p>{{ show.apartment_owner_number }}</p>
+  </div>
+  <div class="col">
+        <h6><b>Email address:</b></h6>
+        <p>{{ show.apartment_owner_mail }}</p>
+    </div>
+  </div>
+  <!-- <h2>Love this home?</h2>
+  <h4>Schedule a showing or ask a question.</h4></center>
+   <form >
+   <center><input type="text" style="width:50%;" class="form-control" placeholder="Full Name" name="query_username"></center><br>
+   <center><input type="text" style="width:50%;" class="form-control" maxlength="10" placeholder="Phone number"></center><br>
+   <center><input type="email"  style="width:50%;" class="form-control" placeholder="Email Address"></center><br>
+   <center><textarea class="form-control" style="width:50%;" placeholder="Write Your query here"></textarea></center><br>
+   <center><input type="submit" class="btn btn-success" value="Request Info"></center>
+ </form> -->
+ <br>
+</center>
+</div>
+<br>
+<center><h2>Description</h2></center><hr>
+  <div id="box">
+<div>
+  <br>
+<p><center>The house has two floors with 4 bedrooms, large social areas and a large kitchen.<br> The area around the house is quiet and comfortable with both meadow and forest environment.<br> Nearby in the farm forestry is an old mill pond with a small overnight cabin, barbecue area, and jetty where you can swim.<br> There are berries and mushrooms for picking in the woods in season. Fishing with a fishing license is possible in nearby lakes.</center>
+</p>
+<br>
+</div>
+</div>
+<br>
+<center><h2>What our users say??</h2></center><hr>
+<div id="box" >
+    <center>
+  <h3>User comments</h3>
+	<h5>Username1 <p style="font-size:12px">(commented 5 days ago)</p></h5><p><b>"</b>This is a wonderful and well furnished house.<b>"</b></p>
+	<hr>
+	<h5>Username2 <p style="font-size:12px">(commented 5 days ago)</p></h5><p><b>"</b>This is a wonderful and well furnished house.<b>"</b></p>
+	<hr>
+<h5>Username3 <p style="font-size:12px">(commented 5 days ago)</p></h5><p><b>"</b>This is a wonderful and well furnished house.<b>"</b></p>
+	<hr>
+  <br><br>
+  <h3>Ratings: {{show.rating}} out of 5 </h3>
+  <form method="post" action="{% url 'rating_analysis' %}">
+    {% csrf_token %}
+
+
+  <textarea name='comment' id='hostel_comment'  rows="5" cols="85" placeholder="Please Add Your Valueable Comment here..." ></textarea><br />
+
+  <input type="hidden" id="" name="p_type" value="{{ p_type }}">
+  <input type="hidden" id="" name="property_id" value="{{ property_id }}">
+ <br />
+  <button class="wow fadeInUp" type="submit" style="border-radius:10px;width:102px;background-color:red;visibility:visible;color: white; height: 55px;">Post a Comment</button>
+
+  </center>
+  <br />
+</form>
+</center>
+
+</div>
+
+
+
+
+<br>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
+{% endblock %}

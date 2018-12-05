@@ -1,0 +1,118 @@
+{% load bootstrap4 %}
+<html>
+  <head>
+
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+    <body>
+
+     <script type="text/javascript">
+          $(window).on('load',function(){
+              $('#modalLRForm').modal('show');
+          });
+      </script>
+
+      <!--Modal: Login / Register Form-->
+      <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal" role="document">
+            <!--Content-->
+            <div class="modal-content">
+
+                <!--Modal cascading tabs-->
+                <div class="modal-c-tabs">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs tabs-2 light-blue darken-3" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#panel7" role="tab"><i class="fa fa-user mr-1"></i> Sign Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fa fa-user-plus mr-1"></i> Sign In</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panels -->
+                    <div class="tab-content">
+                        <!--Panel 7-->
+                        <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+
+                            <div class="modal-body mb-1">
+                                      <form enctype="multipart/form-data" method="post" action="#">
+                                          {% csrf_token %}
+                                          <!-- {{ form.as_p }} -->
+                                          {% for field in form %}
+                                            {% bootstrap_field field %}
+                                          {% endfor %}
+
+
+                                          <div class="text-center mt-2">
+                                              <button class="btn btn-info">Sign Up <i class="fa fa-sign-in ml-1"></i></button>
+                                          </div>
+                                      </form>
+                          </div>
+
+
+                        </div>
+                        <!--/.Panel 7-->
+
+                        <!--Panel 8-->
+                        <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+                            <!--Body-->
+                            <div class="modal-body">
+
+
+                                <div class="modal-body mb-1">
+                                  <form enctype="multipart/form-data" method="post" action="{% url 'user_login' %}">
+                                  {% csrf_token %}
+      <!--
+                                     Username <input type="text" name="username">
+                                      Password <input type="password" name="password">
+                                      <input type="submit">
+      -->
+                                       <div class="md-form form-sm mb-5">
+                                        <i class="fa fa-envelope prefix"></i>
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+
+                                        <input type="text" name="username" placeholder="Your email" class="form-control form-control-sm validate">
+
+                                    </div>
+
+                                    <div class="md-form form-sm mb-4">
+                                        <i class="fa fa-lock prefix"></i>
+
+                                        <input type="password" name="password" placeholder="Your Password" class="form-control form-control-sm validate">
+                                    </div>
+                                       <center><button class="btn btn-info">Sign In <i class="fa fa-sign-in ml-1"></i></button></center>
+
+
+
+                                    </form>
+                                </div>
+
+
+
+
+                            </div>
+
+                        </div>
+                        <!--/.Panel 8-->
+                    </div>
+
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+      </div>
+      <!--Modal: Login / Register Form-->
+
+    </body>
+</html>

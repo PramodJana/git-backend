@@ -1,0 +1,5190 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+
+    <!--Animate Css-->
+      <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+       <!--Wow JS-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script>
+      $(document).ready(function(){
+        alert("Hello");
+      });
+      </script>
+<style>
+.navbar-brand{
+animation-iteration-count:infinite;}
+
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+body {
+  margin: 0px;
+}
+nav {
+  padding: 24px;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  background-color:#B22222;
+}
+#nav-1 {
+  background: #B22222;
+}
+
+.link-1 {
+  transition: 0.3s ease;
+  background: #B22222;
+  color: #DAA520;
+  font-size: 20px;
+  text-decoration: none;
+  border-top: 4px solid #B22222;
+  border-bottom: 4px solid #B22222;
+  padding: 20px 0;
+  margin: 0 5px;
+}
+.link-1:hover {
+  border-top: 4px solid #ffffff;
+  border-bottom: 4px solid #ffffff;
+  padding: 6px 0;
+  text-decoration:none;
+  color: #DAA520;
+}
+
+</style>
+
+
+
+
+<style>
+    .btn {
+  border-radius: 4px;
+  background-color: #f4511e;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn:hover span {
+  padding-right: 25px;
+}
+
+.btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    .decorator{
+        border-top-left-radius:25px;
+        border-top-right-radius: 25px;
+        font-family: 'Play', sans-serif;
+
+    }
+
+        </style>
+
+		<style>
+
+ <!-- article, aside, figure, footer, header, hgroup,
+  menu, nav, section { display: block; }
+	-->
+	.image-upload
+{
+    display: block;
+}
+		input[type=text]:focus {
+    background-color:rgba(255, 255, 150, 0.35);
+
+}
+        #map {
+            height:515px;
+            width: 780px;
+
+        }
+        select {
+        width: 150px;
+        margin: 10px;
+    }
+    select:focus {
+        min-width: 150px;
+        width: auto;
+        background-color: rgba(255, 255, 150, 0.35);
+    }
+        </style>
+
+
+
+
+
+
+
+<!-- script for AutoComplete Search Bar-->
+        <script>
+            function activatePlacesSearch(){
+
+                var input = document.getElementById('searchtextfield');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                    var place = autocomplete.getPlace();
+                    var pname = place.name;
+                    var plat = place.geometry.location.lat();
+                    var plng = place.geometry.location.lng();
+                    alert("For *"+pname+"* Latitude is: *"+plat+"* and Longitude is: *"+plng+"*");
+                    document.getElementById("latitude").value=plat;
+          					document.getElementById("longitude").value=plng;
+          					initMap(pname,plat,plng);
+                    $('#myModal').modal('show');
+
+
+                });
+            }
+        </script>
+
+        <!-- Script for drag and drop feature on map-->
+
+        <script>
+            var np;
+            function initMap(pname,plat,plng) {
+                var uluru =  {lat: plat, lng: plng};
+                var map = new google.maps.Map(
+                    document.getElementById('map'), {zoom: 15, center: uluru});
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    title: pname,
+                    draggable: true,
+                    map: map
+                });
+                google.maps.event.addListener(marker, 'dragend', function (event) {
+                    var nplat = event.latLng.lat();
+                    var nplng = event.latLng.lng();
+                    var npname = getplace(nplat,nplng);
+                    document.getElementById("latitude").value=nplat;
+          					document.getElementById("longitude").value=nplng;
+                    alert("For *"+npname+"* Latitude is: *"+nplat+"* and Longitude is: *"+nplng+"*");
+                });
+                function getplace(nplat,nplng) {
+                    var latlng = new google.maps.LatLng(nplat, nplng);
+                    var geocoder = geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ 'latLng': latlng },
+                    function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[1]) {
+                            np = results[1].formatted_address;
+                            }
+                        }
+                    });
+                    return (np);
+                }
+            }
+        </script>
+
+
+
+
+
+
+  </head>
+  <body>
+  <!--Wow JS Activation-->
+       <script>
+              new WOW().init();
+      </script>
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color:#B22222;" id="nav-1">
+<a class="navbar-brand wow pulse"><img class="d-block w-80 logo wow blink"src="{% static 'img/house.png' %}" alt="First slide" style="height:66px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto" style="font-size:23px;">
+
+    <li class="nav-item">
+            <a class="nav-link link-1" href="index.php" style="color:#DAA520;">Home<span class="sr-only">(current)</span></a>
+          </li>
+      <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Rent-in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Rent-out</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Log-in</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Sign-up</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body onload="hide()" style="font-family: 'Noto Serif', serif; font-size:18px">
+
+
+
+        <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:6000px; height:315px">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title"><center><strong>gDrag the pointer to your location</strong></center></h2>
+        </div>
+        <div class="modal-body">
+          <div id="map"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="container" style="margin-top:107px">
+    <center><h1 class="wow fadeInUp">Rent In your House</h1></center>
+      <hr>
+    <div>  <!-- div for form-->
+    <form action="">
+        <div class="row">
+            <div class="col-lg-3 wow fadeInUp">
+            <label class="decorator">&nbsp&nbsp Type of Properties :</label>
+                <select class="form-control decorator" id="select_category_house" onclick="f()" style="width:180px;height:44px;">
+                    <option value="1">Apartment</option>
+                    <option value="2">Hostel</option>
+                    <option value="3">Houses</option>
+                </select>
+            </div>
+                <div class="col-lg-9 wow fadeInUp">
+
+            <label class="decorator">&nbsp Address :</label>
+			<div class="input-group input-group-lg" style="margin-top:8px">
+  <span class="input-group-addon" >
+    <i class="fa fa-search"></i>
+  </span>
+            <input id="searchtextfield" class="form-control rounded-0" type="text"  size="50"
+			placeholder="Enter the location" name="address" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required/>
+</div>
+		   </div>
+
+
+        </div>
+
+    </form>
+</div> <!-- end of div form-->
+  </div>
+  <div class="container wow fadeIn">
+    <div class="wow fadeInUp form-group ">
+    <form id="apartment_form">
+      {% csrf_token %}
+
+        <center><h1>Apartments</h1></center><hr>
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_apartment" value="name_apartment">
+<input type="text" id="latitude" value="" name="latitude">
+<input type="text" id="longitude" value="" name="longitude">
+<input type="hidden" id="desc" value="" name="description">
+
+
+            <div class="row">
+                <div class="col-lg-4">
+
+                    <label for="number" class="decorator">&nbsp Apartment Name/No :</label>
+						<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-building"></i>
+				</span>
+                    <input type="text" class="form-control" id="number" placeholder="Enter the apartment name" name="apartment_name" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+                <div class="col-lg-4">
+                    <label for="type" class="decorator">&nbsp&nbsp Apartment Type :</label>
+                    <select name="apartment_type" id="apartment_type" class="form-control decorator" style="width:250px;height:44px;">
+                        <option >Select</option>
+                        <option>One BHK</option>
+                        <option>Two BHK</option>
+                        <option>Three BHK</option>
+                        <option>Studio</option>
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Super Buildup Area(sqft) :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control " id="super_buildup_area" placeholder="Enter your Apartment Area in Sqft " name="super_buildup_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+                </div></div>
+            </div><br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Carpet Area :</label>
+<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control styling" id="apartment_carpet_area" placeholder="Enter the carpet area" name="apartment_carpet_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+              <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Furnishing :</label>
+                    <select name="apartment_furnishing" id="apartment_furnishing" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Semifurnished</option>
+                        <option>Furnished</option>
+                        <option>Unfurnished</option>
+
+                    </select>
+                </div>
+<div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_floor_no" placeholder="Enter the Specific Floor No." name="apartment_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;"style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+      </div> <br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="overlooking" class="decorator">&nbsp Overlooking :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-road"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_overlooking" placeholder="For eg. Garden/Park,Main Road" name="apartment_overlooking" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+					<div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Tenants Prefered :</label>
+                    <select name="tenant1" id="apartment_tenants" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Bachelor</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+              <div class="col-lg-4">
+                    <label for="m_cost" class="decorator">&nbsp Maintainance Cost :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_maintainance_cost" placeholder="Enter the Genune Maintainance cost" name="apartment_maintainance_cost" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+               </div><br><br><br>
+          <div class="row">
+                <div class="col-lg-4" >
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_price" placeholder="Enter the genune price of your property" name="apartment_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+
+              </div></div>
+			  <div class="col-lg-4">
+                    <label for="parking" class="decorator">&nbsp&nbsp&nbsp&nbsp Car Parking :</label><br>
+                        <input class="form-check-input" type="radio" name="apartment_parking" id="apartment_parking" value="option1">
+                            <label class="form-check-label" for="exampleRadios1">Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+
+
+                        <input class="form-check-input" type="radio" name="apartment_parking" id="apartment_parking" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+
+                </div>
+              </div><br><br>
+			  <div class="row">
+            <label class="decorator">Add Description:</label>
+            <textarea class="form-control rounded-0" placeholder="Description..." id="apartment_description" value="" name="apartment_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+
+
+      </div>     <br><br><br>
+          <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL1(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img1')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img1" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+ <input type='file' onchange="readURL1(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL2(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img2')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img2" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL2(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL3(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img3')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img3" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL3(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+         <br><br>
+        <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px"><span>Submit</span></button></center>
+      </form>
+      </div>
+  </div>
+
+
+
+        <!--    Form 2 -->
+
+
+
+      <div class="container wow fadeIn">
+       <div class=" form-group ">
+  <form id="hostel_form" class="wow fadeInUp">
+
+        <center><h1>Hostels</h1></center><hr><br>
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_hostel" value="name_hostel">
+<input type="hidden" id="latitude" value="" name="latitude">
+<input type="hidden" id="longitude" value="" name="longitude">
+<input type="hidden" id="desc" value="" name="description">
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Room Size :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="number" placeholder="Enter the specific area of your room" name="apartment" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+                <div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label><br>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="hostel_floor_no" placeholder="Enter your specific Floor No.&nbsp&nbsp&nbsp" name="hostel_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+  <div class="col-lg-4">
+                    <label for="type" class="decorator">&nbsp&nbsp Room Type :</label>
+                    <select name="hostel_room_type" id="hostel_room_type" class="form-control decorator" style="width:250px;height:44px;">
+                        <option>Select</option>
+                        <option>Single Seater</option>
+                        <option>Double Seater</option>
+                        <option>Triple Seater</option>
+
+                    </select>
+                </div>
+
+
+            </div><br><br><br><br>
+          <div class="row">
+		  <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Attached Bathroom :</label><br>
+                    <input class="form-check-input" type="radio" name="hostel_attached_bathroom" id="hostel_attached_bathroom" value="option1">
+                            <label class="form-check-label" >Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                <input class="form-check-input" type="radio" name="hostel_attached_bathroom" id="hostel_attached_bathroom" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+                </div>
+            <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp&nbsp&nbsp&nbsp Mess Facility :</label><br>
+                    <input class="form-check-input" type="radio" name="hostel_mess_facility" id="hostel_mess_facility" value="option1" >
+                            <label class="form-check-label" for="exampleRadios1">Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                <input class="form-check-input" type="radio" name="hostel_mess_facility" id="hostel_mess_facility" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+                </div>
+
+                    <div class="col-lg-4"> <label for="number" class="decorator">Other Facilities :</label><br>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Bedding" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Bedding</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="LED and FAN" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">LED and FAN</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="Study Desk and Chair" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Study Desk and Chair</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="Almirah" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Almirah</label><br>
+
+</div>
+                </div>
+
+      </div> <br>
+        <div class="row">
+              <div class="col-lg-4">
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="hostel_price" placeholder="Enter your Genune price" name="hostel_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                  </div>
+
+              </div></div><br><br>
+			  <div class="row-lg-8" >
+            <label class="decorator">Add Description:</label>
+            <textarea class="form-control rounded-0" placeholder="Description..." id="hostel_description" value="" name="hostel_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+            <br><br>
+			</div>
+           <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL4(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img4')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img4" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL4(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL5(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img5')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img5" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL5(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL6(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img6')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img6" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL6(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+       <br><br>
+      <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px;"><span>Submit</span></button></center>
+      </form>
+	  </div>
+	  </div>
+
+
+
+
+
+                            <!--    Form 3 -->
+
+
+<div class="container wow fadeIn">
+    <div class="form-group ">
+    <form id="house_form" class="wow fadeInUp">
+
+        <center><h1>Houses</h1></center><hr>
+
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_house" value="" name="name_house">
+<input type="hidden" id="latitude" value="" name="latitude">
+<input type="hidden" id="longitude" value="" name="longitude">
+
+
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp No of Bedrooms :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-bed"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="house_no_bedrooms" placeholder="Enter the specific No. of Bedrooms" name="house_no_bedrooms" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp No of Bathrooms :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-shower"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_no_bathrooms" placeholder="Enter the specific No. of Bathrooms" name="house_no_bathrooms" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+            <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Tenants Prefered :</label>
+                    <select name="house_tenants_preffered" id="house_tenants_preffered" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Bachelor</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+
+                </div><br><br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Carpet Area :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_carpet_area" placeholder="Enter the specific Carpet Area" name="house_carpet_area" required>
+                </div></div>
+				<div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Super Buildup Area(sqft) :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_buildup_area" placeholder="Enter the specific Area in sqft" name="house_buildup_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+                </div></div>
+              <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Furnishing :</label>
+                    <select name="house_furnishing" id="house_furnishing" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Semifurnished</option>
+                        <option>Furnished</option>
+                        <option>Unfurnished</option>
+
+                    </select>
+                </div>
+
+      </div> <br><br><br><br>
+          <div class="row">
+                    <div class="col-lg-4">
+                        <label for="overlooking" class="decorator">&nbsp Overlooking :</label>
+						<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-road"></i>
+				</span>
+                        <input type="text" class="form-control" id="house_overlooking" placeholder="For eg. Garden/Park,supermarket" name="house_overlooking" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                    </div></div>
+
+              <div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_floor_no" placeholder="Enter your Specific Floor No." name="house_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+              <div class="col-lg-4">
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_price" placeholder="Enter the Genuine Price" name="house_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                  </div>
+
+              </div></div><br><br>
+			  <div class="row-lg-8">
+            <label class="decorator">&nbsp Add Description :</label>
+            <textarea class="form-control rounded-0" placeholder="Enter the Description" id="house_description" value="" name="house_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+            </div>
+			<br><br>
+           <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL7(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img7')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img7" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL7(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL8(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img8')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img8" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL8(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL9(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img9')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img9" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL9(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+          <br><br>
+        <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px;"><span>Submit</span></button></center>
+      </form>
+  </div>
+  </div>
+
+
+
+
+
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv1tJmX-EeixYFP9LTQMnR1IjUtLYa6Yk&libraries=places&callback=activatePlacesSearch"></script>
+    </body>
+</html>
+
+<!--Script for form-->
+<script>
+    function hide(){
+      document.getElementById('apartment_form').style.display="block";
+      document.getElementById('hostel_form').style.display="none";
+      document.getElementById('house_form').style.display="none";
+    }
+    function f(){
+    var s = document.getElementById('select_category_house').value;
+
+  if(s=="1"){
+    document.getElementById('apartment_form').style.display="block";
+    document.getElementById('hostel_form').style.display="none";
+    document.getElementById('house_form').style.display="none";
+	document.getElementById("name_apartment").value="Apartment";
+
+
+
+  }
+  if(s=="2"){
+    document.getElementById('apartment_form').style.display="none";
+    document.getElementById('hostel_form').style.display="block";
+    document.getElementById('house_form').style.display="none";
+	document.getElementById("name_hostel").value="Hostels";
+
+  }
+  if(s=="3"){
+    document.getElementById('apartment_form').style.display="none";
+    document.getElementById('hostel_form').style.display="none";
+    document.getElementById('house_form').style.display="block";
+	document.getElementById("name_house").value="House";
+
+  }
+
+  }
+
+    </script>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+
+    <!--Animate Css-->
+      <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+       <!--Wow JS-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script>
+      $(document).ready(function(){
+        alert("Hello");
+      });
+      </script>
+<style>
+.navbar-brand{
+animation-iteration-count:infinite;}
+
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+body {
+  margin: 0px;
+}
+nav {
+  padding: 24px;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  background-color:#B22222;
+}
+#nav-1 {
+  background: #B22222;
+}
+
+.link-1 {
+  transition: 0.3s ease;
+  background: #B22222;
+  color: #DAA520;
+  font-size: 20px;
+  text-decoration: none;
+  border-top: 4px solid #B22222;
+  border-bottom: 4px solid #B22222;
+  padding: 20px 0;
+  margin: 0 5px;
+}
+.link-1:hover {
+  border-top: 4px solid #ffffff;
+  border-bottom: 4px solid #ffffff;
+  padding: 6px 0;
+  text-decoration:none;
+  color: #DAA520;
+}
+
+</style>
+
+
+
+
+<style>
+    .btn {
+  border-radius: 4px;
+  background-color: #f4511e;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn:hover span {
+  padding-right: 25px;
+}
+
+.btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    .decorator{
+        border-top-left-radius:25px;
+        border-top-right-radius: 25px;
+        font-family: 'Play', sans-serif;
+
+    }
+
+        </style>
+
+		<style>
+
+ <!-- article, aside, figure, footer, header, hgroup,
+  menu, nav, section { display: block; }
+	-->
+	.image-upload
+{
+    display: block;
+}
+		input[type=text]:focus {
+    background-color:rgba(255, 255, 150, 0.35);
+
+}
+        #map {
+            height:515px;
+            width: 780px;
+
+        }
+        select {
+        width: 150px;
+        margin: 10px;
+    }
+    select:focus {
+        min-width: 150px;
+        width: auto;
+        background-color: rgba(255, 255, 150, 0.35);
+    }
+        </style>
+
+
+
+
+
+
+
+<!-- script for AutoComplete Search Bar-->
+        <script>
+            function activatePlacesSearch(){
+
+                var input = document.getElementById('searchtextfield');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                    var place = autocomplete.getPlace();
+                    var pname = place.name;
+                    var plat = place.geometry.location.lat();
+                    var plng = place.geometry.location.lng();
+                    alert("For *"+pname+"* Latitude is: *"+plat+"* and Longitude is: *"+plng+"*");
+                    document.getElementById("latitude").value=plat;
+          					document.getElementById("longitude").value=plng;
+          					initMap(pname,plat,plng);
+                    $('#myModal').modal('show');
+
+
+                });
+            }
+        </script>
+
+        <!-- Script for drag and drop feature on map-->
+
+        <script>
+            var np;
+            function initMap(pname,plat,plng) {
+                var uluru =  {lat: plat, lng: plng};
+                var map = new google.maps.Map(
+                    document.getElementById('map'), {zoom: 15, center: uluru});
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    title: pname,
+                    draggable: true,
+                    map: map
+                });
+                google.maps.event.addListener(marker, 'dragend', function (event) {
+                    var nplat = event.latLng.lat();
+                    var nplng = event.latLng.lng();
+                    var npname = getplace(nplat,nplng);
+                    document.getElementById("latitude").value=nplat;
+          					document.getElementById("longitude").value=nplng;
+                    alert("For *"+npname+"* Latitude is: *"+nplat+"* and Longitude is: *"+nplng+"*");
+                });
+                function getplace(nplat,nplng) {
+                    var latlng = new google.maps.LatLng(nplat, nplng);
+                    var geocoder = geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ 'latLng': latlng },
+                    function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[1]) {
+                            np = results[1].formatted_address;
+                            }
+                        }
+                    });
+                    return (np);
+                }
+            }
+        </script>
+
+
+
+
+
+
+  </head>
+  <body>
+  <!--Wow JS Activation-->
+       <script>
+              new WOW().init();
+      </script>
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color:#B22222;" id="nav-1">
+<a class="navbar-brand wow pulse"><img class="d-block w-80 logo wow blink"src="{% static 'img/house.png' %}" alt="First slide" style="height:66px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto" style="font-size:23px;">
+
+    <li class="nav-item">
+            <a class="nav-link link-1" href="index.php" style="color:#DAA520;">Home<span class="sr-only">(current)</span></a>
+          </li>
+      <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Rent-in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Rent-out</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Log-in</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Sign-up</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body onload="hide()" style="font-family: 'Noto Serif', serif; font-size:18px">
+
+
+
+        <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:6000px; height:315px">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title"><center><strong>gDrag the pointer to your location</strong></center></h2>
+        </div>
+        <div class="modal-body">
+          <div id="map"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="container" style="margin-top:107px">
+    <center><h1 class="wow fadeInUp">Rent In your House</h1></center>
+      <hr>
+    <div>  <!-- div for form-->
+    <form action="">
+        <div class="row">
+            <div class="col-lg-3 wow fadeInUp">
+            <label class="decorator">&nbsp&nbsp Type of Properties :</label>
+                <select class="form-control decorator" id="select_category_house" onclick="f()" style="width:180px;height:44px;">
+                    <option value="1">Apartment</option>
+                    <option value="2">Hostel</option>
+                    <option value="3">Houses</option>
+                </select>
+            </div>
+                <div class="col-lg-9 wow fadeInUp">
+
+            <label class="decorator">&nbsp Address :</label>
+			<div class="input-group input-group-lg" style="margin-top:8px">
+  <span class="input-group-addon" >
+    <i class="fa fa-search"></i>
+  </span>
+            <input id="searchtextfield" class="form-control rounded-0" type="text"  size="50"
+			placeholder="Enter the location" name="address" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required/>
+</div>
+		   </div>
+
+
+        </div>
+
+    </form>
+</div> <!-- end of div form-->
+  </div>
+  <div class="container wow fadeIn">
+    <div class="wow fadeInUp form-group ">
+    <form id="apartment_form">
+      {% csrf_token %}
+
+        <center><h1>Apartments</h1></center><hr>
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_apartment" value="name_apartment">
+<input type="text" id="latitude" value="" name="latitude">
+<input type="text" id="longitude" value="" name="longitude">
+<input type="hidden" id="desc" value="" name="description">
+
+
+            <div class="row">
+                <div class="col-lg-4">
+
+                    <label for="number" class="decorator">&nbsp Apartment Name/No :</label>
+						<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-building"></i>
+				</span>
+                    <input type="text" class="form-control" id="number" placeholder="Enter the apartment name" name="apartment_name" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+                <div class="col-lg-4">
+                    <label for="type" class="decorator">&nbsp&nbsp Apartment Type :</label>
+                    <select name="apartment_type" id="apartment_type" class="form-control decorator" style="width:250px;height:44px;">
+                        <option >Select</option>
+                        <option>One BHK</option>
+                        <option>Two BHK</option>
+                        <option>Three BHK</option>
+                        <option>Studio</option>
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Super Buildup Area(sqft) :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control " id="super_buildup_area" placeholder="Enter your Apartment Area in Sqft " name="super_buildup_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+                </div></div>
+            </div><br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Carpet Area :</label>
+<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control styling" id="apartment_carpet_area" placeholder="Enter the carpet area" name="apartment_carpet_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+              <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Furnishing :</label>
+                    <select name="apartment_furnishing" id="apartment_furnishing" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Semifurnished</option>
+                        <option>Furnished</option>
+                        <option>Unfurnished</option>
+
+                    </select>
+                </div>
+<div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_floor_no" placeholder="Enter the Specific Floor No." name="apartment_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;"style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+      </div> <br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="overlooking" class="decorator">&nbsp Overlooking :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-road"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_overlooking" placeholder="For eg. Garden/Park,Main Road" name="apartment_overlooking" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+					<div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Tenants Prefered :</label>
+                    <select name="tenant1" id="apartment_tenants" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Bachelor</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+              <div class="col-lg-4">
+                    <label for="m_cost" class="decorator">&nbsp Maintainance Cost :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_maintainance_cost" placeholder="Enter the Genune Maintainance cost" name="apartment_maintainance_cost" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+               </div><br><br><br>
+          <div class="row">
+                <div class="col-lg-4" >
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_price" placeholder="Enter the genune price of your property" name="apartment_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+
+              </div></div>
+			  <div class="col-lg-4">
+                    <label for="parking" class="decorator">&nbsp&nbsp&nbsp&nbsp Car Parking :</label><br>
+                        <input class="form-check-input" type="radio" name="apartment_parking" id="apartment_parking" value="option1">
+                            <label class="form-check-label" for="exampleRadios1">Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+
+
+                        <input class="form-check-input" type="radio" name="apartment_parking" id="apartment_parking" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+
+                </div>
+              </div><br><br>
+			  <div class="row">
+            <label class="decorator">Add Description:</label>
+            <textarea class="form-control rounded-0" placeholder="Description..." id="apartment_description" value="" name="apartment_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+
+
+      </div>     <br><br><br>
+          <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL1(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img1')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img1" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+ <input type='file' onchange="readURL1(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL2(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img2')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img2" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL2(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL3(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img3')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img3" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL3(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+         <br><br>
+        <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px"><span>Submit</span></button></center>
+      </form>
+      </div>
+  </div>
+
+
+
+        <!--    Form 2 -->
+
+
+
+      <div class="container wow fadeIn">
+       <div class=" form-group ">
+  <form id="hostel_form" class="wow fadeInUp">
+
+        <center><h1>Hostels</h1></center><hr><br>
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_hostel" value="name_hostel">
+<input type="hidden" id="latitude" value="" name="latitude">
+<input type="hidden" id="longitude" value="" name="longitude">
+<input type="hidden" id="desc" value="" name="description">
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Room Size :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="number" placeholder="Enter the specific area of your room" name="apartment" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+                <div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label><br>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="hostel_floor_no" placeholder="Enter your specific Floor No.&nbsp&nbsp&nbsp" name="hostel_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+  <div class="col-lg-4">
+                    <label for="type" class="decorator">&nbsp&nbsp Room Type :</label>
+                    <select name="hostel_room_type" id="hostel_room_type" class="form-control decorator" style="width:250px;height:44px;">
+                        <option>Select</option>
+                        <option>Single Seater</option>
+                        <option>Double Seater</option>
+                        <option>Triple Seater</option>
+
+                    </select>
+                </div>
+
+
+            </div><br><br><br><br>
+          <div class="row">
+		  <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Attached Bathroom :</label><br>
+                    <input class="form-check-input" type="radio" name="hostel_attached_bathroom" id="hostel_attached_bathroom" value="option1">
+                            <label class="form-check-label" >Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                <input class="form-check-input" type="radio" name="hostel_attached_bathroom" id="hostel_attached_bathroom" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+                </div>
+            <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp&nbsp&nbsp&nbsp Mess Facility :</label><br>
+                    <input class="form-check-input" type="radio" name="hostel_mess_facility" id="hostel_mess_facility" value="option1" >
+                            <label class="form-check-label" for="exampleRadios1">Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                <input class="form-check-input" type="radio" name="hostel_mess_facility" id="hostel_mess_facility" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+                </div>
+
+                    <div class="col-lg-4"> <label for="number" class="decorator">Other Facilities :</label><br>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Bedding" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Bedding</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="LED and FAN" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">LED and FAN</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="Study Desk and Chair" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Study Desk and Chair</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="Almirah" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Almirah</label><br>
+
+</div>
+                </div>
+
+      </div> <br>
+        <div class="row">
+              <div class="col-lg-4">
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="hostel_price" placeholder="Enter your Genune price" name="hostel_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                  </div>
+
+              </div></div><br><br>
+			  <div class="row-lg-8" >
+            <label class="decorator">Add Description:</label>
+            <textarea class="form-control rounded-0" placeholder="Description..." id="hostel_description" value="" name="hostel_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+            <br><br>
+			</div>
+           <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL4(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img4')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img4" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL4(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL5(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img5')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img5" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL5(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL6(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img6')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img6" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL6(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+       <br><br>
+      <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px;"><span>Submit</span></button></center>
+      </form>
+	  </div>
+	  </div>
+
+
+
+
+
+                            <!--    Form 3 -->
+
+
+<div class="container wow fadeIn">
+    <div class="form-group ">
+    <form id="house_form" class="wow fadeInUp">
+
+        <center><h1>Houses</h1></center><hr>
+
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_house" value="" name="name_house">
+<input type="hidden" id="latitude" value="" name="latitude">
+<input type="hidden" id="longitude" value="" name="longitude">
+
+
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp No of Bedrooms :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-bed"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="house_no_bedrooms" placeholder="Enter the specific No. of Bedrooms" name="house_no_bedrooms" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp No of Bathrooms :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-shower"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_no_bathrooms" placeholder="Enter the specific No. of Bathrooms" name="house_no_bathrooms" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+            <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Tenants Prefered :</label>
+                    <select name="house_tenants_preffered" id="house_tenants_preffered" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Bachelor</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+
+                </div><br><br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Carpet Area :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_carpet_area" placeholder="Enter the specific Carpet Area" name="house_carpet_area" required>
+                </div></div>
+				<div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Super Buildup Area(sqft) :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_buildup_area" placeholder="Enter the specific Area in sqft" name="house_buildup_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+                </div></div>
+              <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Furnishing :</label>
+                    <select name="house_furnishing" id="house_furnishing" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Semifurnished</option>
+                        <option>Furnished</option>
+                        <option>Unfurnished</option>
+
+                    </select>
+                </div>
+
+      </div> <br><br><br><br>
+          <div class="row">
+                    <div class="col-lg-4">
+                        <label for="overlooking" class="decorator">&nbsp Overlooking :</label>
+						<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-road"></i>
+				</span>
+                        <input type="text" class="form-control" id="house_overlooking" placeholder="For eg. Garden/Park,supermarket" name="house_overlooking" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                    </div></div>
+
+              <div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_floor_no" placeholder="Enter your Specific Floor No." name="house_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+              <div class="col-lg-4">
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_price" placeholder="Enter the Genuine Price" name="house_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                  </div>
+
+              </div></div><br><br>
+			  <div class="row-lg-8">
+            <label class="decorator">&nbsp Add Description :</label>
+            <textarea class="form-control rounded-0" placeholder="Enter the Description" id="house_description" value="" name="house_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+            </div>
+			<br><br>
+           <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL7(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img7')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img7" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL7(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL8(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img8')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img8" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL8(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL9(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img9')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img9" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL9(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+          <br><br>
+        <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px;"><span>Submit</span></button></center>
+      </form>
+  </div>
+  </div>
+
+
+
+
+
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv1tJmX-EeixYFP9LTQMnR1IjUtLYa6Yk&libraries=places&callback=activatePlacesSearch"></script>
+    </body>
+</html>
+
+<!--Script for form-->
+<script>
+    function hide(){
+      document.getElementById('apartment_form').style.display="block";
+      document.getElementById('hostel_form').style.display="none";
+      document.getElementById('house_form').style.display="none";
+    }
+    function f(){
+    var s = document.getElementById('select_category_house').value;
+
+  if(s=="1"){
+    document.getElementById('apartment_form').style.display="block";
+    document.getElementById('hostel_form').style.display="none";
+    document.getElementById('house_form').style.display="none";
+	document.getElementById("name_apartment").value="Apartment";
+
+
+
+  }
+  if(s=="2"){
+    document.getElementById('apartment_form').style.display="none";
+    document.getElementById('hostel_form').style.display="block";
+    document.getElementById('house_form').style.display="none";
+	document.getElementById("name_hostel").value="Hostels";
+
+  }
+  if(s=="3"){
+    document.getElementById('apartment_form').style.display="none";
+    document.getElementById('hostel_form').style.display="none";
+    document.getElementById('house_form').style.display="block";
+	document.getElementById("name_house").value="House";
+
+  }
+
+  }
+
+    </script>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+
+    <!--Animate Css-->
+      <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+       <!--Wow JS-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script>
+      $(document).ready(function(){
+        alert("Hello");
+      });
+      </script>
+<style>
+.navbar-brand{
+animation-iteration-count:infinite;}
+
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+body {
+  margin: 0px;
+}
+nav {
+  padding: 24px;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  background-color:#B22222;
+}
+#nav-1 {
+  background: #B22222;
+}
+
+.link-1 {
+  transition: 0.3s ease;
+  background: #B22222;
+  color: #DAA520;
+  font-size: 20px;
+  text-decoration: none;
+  border-top: 4px solid #B22222;
+  border-bottom: 4px solid #B22222;
+  padding: 20px 0;
+  margin: 0 5px;
+}
+.link-1:hover {
+  border-top: 4px solid #ffffff;
+  border-bottom: 4px solid #ffffff;
+  padding: 6px 0;
+  text-decoration:none;
+  color: #DAA520;
+}
+
+</style>
+
+
+
+
+<style>
+    .btn {
+  border-radius: 4px;
+  background-color: #f4511e;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn:hover span {
+  padding-right: 25px;
+}
+
+.btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    .decorator{
+        border-top-left-radius:25px;
+        border-top-right-radius: 25px;
+        font-family: 'Play', sans-serif;
+
+    }
+
+        </style>
+
+		<style>
+
+ <!-- article, aside, figure, footer, header, hgroup,
+  menu, nav, section { display: block; }
+	-->
+	.image-upload
+{
+    display: block;
+}
+		input[type=text]:focus {
+    background-color:rgba(255, 255, 150, 0.35);
+
+}
+        #map {
+            height:515px;
+            width: 780px;
+
+        }
+        select {
+        width: 150px;
+        margin: 10px;
+    }
+    select:focus {
+        min-width: 150px;
+        width: auto;
+        background-color: rgba(255, 255, 150, 0.35);
+    }
+        </style>
+
+
+
+
+
+
+
+<!-- script for AutoComplete Search Bar-->
+        <script>
+            function activatePlacesSearch(){
+
+                var input = document.getElementById('searchtextfield');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                    var place = autocomplete.getPlace();
+                    var pname = place.name;
+                    var plat = place.geometry.location.lat();
+                    var plng = place.geometry.location.lng();
+                    alert("For *"+pname+"* Latitude is: *"+plat+"* and Longitude is: *"+plng+"*");
+                    document.getElementById("latitude").value=plat;
+          					document.getElementById("longitude").value=plng;
+          					initMap(pname,plat,plng);
+                    $('#myModal').modal('show');
+
+
+                });
+            }
+        </script>
+
+        <!-- Script for drag and drop feature on map-->
+
+        <script>
+            var np;
+            function initMap(pname,plat,plng) {
+                var uluru =  {lat: plat, lng: plng};
+                var map = new google.maps.Map(
+                    document.getElementById('map'), {zoom: 15, center: uluru});
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    title: pname,
+                    draggable: true,
+                    map: map
+                });
+                google.maps.event.addListener(marker, 'dragend', function (event) {
+                    var nplat = event.latLng.lat();
+                    var nplng = event.latLng.lng();
+                    var npname = getplace(nplat,nplng);
+                    document.getElementById("latitude").value=nplat;
+          					document.getElementById("longitude").value=nplng;
+                    alert("For *"+npname+"* Latitude is: *"+nplat+"* and Longitude is: *"+nplng+"*");
+                });
+                function getplace(nplat,nplng) {
+                    var latlng = new google.maps.LatLng(nplat, nplng);
+                    var geocoder = geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ 'latLng': latlng },
+                    function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[1]) {
+                            np = results[1].formatted_address;
+                            }
+                        }
+                    });
+                    return (np);
+                }
+            }
+        </script>
+
+
+
+
+
+
+  </head>
+  <body>
+  <!--Wow JS Activation-->
+       <script>
+              new WOW().init();
+      </script>
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color:#B22222;" id="nav-1">
+<a class="navbar-brand wow pulse"><img class="d-block w-80 logo wow blink"src="{% static 'img/house.png' %}" alt="First slide" style="height:66px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto" style="font-size:23px;">
+
+    <li class="nav-item">
+            <a class="nav-link link-1" href="index.php" style="color:#DAA520;">Home<span class="sr-only">(current)</span></a>
+          </li>
+      <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Rent-in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Rent-out</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Log-in</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Sign-up</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body onload="hide()" style="font-family: 'Noto Serif', serif; font-size:18px">
+
+
+
+        <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:6000px; height:315px">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title"><center><strong>gDrag the pointer to your location</strong></center></h2>
+        </div>
+        <div class="modal-body">
+          <div id="map"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="container" style="margin-top:107px">
+    <center><h1 class="wow fadeInUp">Rent In your House</h1></center>
+      <hr>
+    <div>  <!-- div for form-->
+    <form action="">
+        <div class="row">
+            <div class="col-lg-3 wow fadeInUp">
+            <label class="decorator">&nbsp&nbsp Type of Properties :</label>
+                <select class="form-control decorator" id="select_category_house" onclick="f()" style="width:180px;height:44px;">
+                    <option value="1">Apartment</option>
+                    <option value="2">Hostel</option>
+                    <option value="3">Houses</option>
+                </select>
+            </div>
+                <div class="col-lg-9 wow fadeInUp">
+
+            <label class="decorator">&nbsp Address :</label>
+			<div class="input-group input-group-lg" style="margin-top:8px">
+  <span class="input-group-addon" >
+    <i class="fa fa-search"></i>
+  </span>
+            <input id="searchtextfield" class="form-control rounded-0" type="text"  size="50"
+			placeholder="Enter the location" name="address" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required/>
+</div>
+		   </div>
+
+
+        </div>
+
+    </form>
+</div> <!-- end of div form-->
+  </div>
+  <div class="container wow fadeIn">
+    <div class="wow fadeInUp form-group ">
+    <form id="apartment_form">
+      {% csrf_token %}
+
+        <center><h1>Apartments</h1></center><hr>
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_apartment" value="name_apartment">
+<input type="text" id="latitude" value="" name="latitude">
+<input type="text" id="longitude" value="" name="longitude">
+<input type="hidden" id="desc" value="" name="description">
+
+
+            <div class="row">
+                <div class="col-lg-4">
+
+                    <label for="number" class="decorator">&nbsp Apartment Name/No :</label>
+						<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-building"></i>
+				</span>
+                    <input type="text" class="form-control" id="number" placeholder="Enter the apartment name" name="apartment_name" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+                <div class="col-lg-4">
+                    <label for="type" class="decorator">&nbsp&nbsp Apartment Type :</label>
+                    <select name="apartment_type" id="apartment_type" class="form-control decorator" style="width:250px;height:44px;">
+                        <option >Select</option>
+                        <option>One BHK</option>
+                        <option>Two BHK</option>
+                        <option>Three BHK</option>
+                        <option>Studio</option>
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Super Buildup Area(sqft) :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control " id="super_buildup_area" placeholder="Enter your Apartment Area in Sqft " name="super_buildup_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+                </div></div>
+            </div><br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Carpet Area :</label>
+<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control styling" id="apartment_carpet_area" placeholder="Enter the carpet area" name="apartment_carpet_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+              <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Furnishing :</label>
+                    <select name="apartment_furnishing" id="apartment_furnishing" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Semifurnished</option>
+                        <option>Furnished</option>
+                        <option>Unfurnished</option>
+
+                    </select>
+                </div>
+<div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_floor_no" placeholder="Enter the Specific Floor No." name="apartment_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;"style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+      </div> <br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="overlooking" class="decorator">&nbsp Overlooking :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-road"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_overlooking" placeholder="For eg. Garden/Park,Main Road" name="apartment_overlooking" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+					<div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Tenants Prefered :</label>
+                    <select name="tenant1" id="apartment_tenants" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Bachelor</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+              <div class="col-lg-4">
+                    <label for="m_cost" class="decorator">&nbsp Maintainance Cost :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_maintainance_cost" placeholder="Enter the Genune Maintainance cost" name="apartment_maintainance_cost" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+               </div><br><br><br>
+          <div class="row">
+                <div class="col-lg-4" >
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_price" placeholder="Enter the genune price of your property" name="apartment_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+
+              </div></div>
+			  <div class="col-lg-4">
+                    <label for="parking" class="decorator">&nbsp&nbsp&nbsp&nbsp Car Parking :</label><br>
+                        <input class="form-check-input" type="radio" name="apartment_parking" id="apartment_parking" value="option1">
+                            <label class="form-check-label" for="exampleRadios1">Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+
+
+                        <input class="form-check-input" type="radio" name="apartment_parking" id="apartment_parking" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+
+                </div>
+              </div><br><br>
+			  <div class="row">
+            <label class="decorator">Add Description:</label>
+            <textarea class="form-control rounded-0" placeholder="Description..." id="apartment_description" value="" name="apartment_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+
+
+      </div>     <br><br><br>
+          <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL1(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img1')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img1" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+ <input type='file' onchange="readURL1(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL2(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img2')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img2" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL2(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL3(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img3')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img3" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL3(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+         <br><br>
+        <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px"><span>Submit</span></button></center>
+      </form>
+      </div>
+  </div>
+
+
+
+        <!--    Form 2 -->
+
+
+
+      <div class="container wow fadeIn">
+       <div class=" form-group ">
+  <form id="hostel_form" class="wow fadeInUp">
+
+        <center><h1>Hostels</h1></center><hr><br>
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_hostel" value="name_hostel">
+<input type="hidden" id="latitude" value="" name="latitude">
+<input type="hidden" id="longitude" value="" name="longitude">
+<input type="hidden" id="desc" value="" name="description">
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Room Size :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="number" placeholder="Enter the specific area of your room" name="apartment" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+                <div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label><br>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="hostel_floor_no" placeholder="Enter your specific Floor No.&nbsp&nbsp&nbsp" name="hostel_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+  <div class="col-lg-4">
+                    <label for="type" class="decorator">&nbsp&nbsp Room Type :</label>
+                    <select name="hostel_room_type" id="hostel_room_type" class="form-control decorator" style="width:250px;height:44px;">
+                        <option>Select</option>
+                        <option>Single Seater</option>
+                        <option>Double Seater</option>
+                        <option>Triple Seater</option>
+
+                    </select>
+                </div>
+
+
+            </div><br><br><br><br>
+          <div class="row">
+		  <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Attached Bathroom :</label><br>
+                    <input class="form-check-input" type="radio" name="hostel_attached_bathroom" id="hostel_attached_bathroom" value="option1">
+                            <label class="form-check-label" >Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                <input class="form-check-input" type="radio" name="hostel_attached_bathroom" id="hostel_attached_bathroom" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+                </div>
+            <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp&nbsp&nbsp&nbsp Mess Facility :</label><br>
+                    <input class="form-check-input" type="radio" name="hostel_mess_facility" id="hostel_mess_facility" value="option1" >
+                            <label class="form-check-label" for="exampleRadios1">Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                <input class="form-check-input" type="radio" name="hostel_mess_facility" id="hostel_mess_facility" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+                </div>
+
+                    <div class="col-lg-4"> <label for="number" class="decorator">Other Facilities :</label><br>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Bedding" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Bedding</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="LED and FAN" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">LED and FAN</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="Study Desk and Chair" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Study Desk and Chair</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="Almirah" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Almirah</label><br>
+
+</div>
+                </div>
+
+      </div> <br>
+        <div class="row">
+              <div class="col-lg-4">
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="hostel_price" placeholder="Enter your Genune price" name="hostel_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                  </div>
+
+              </div></div><br><br>
+			  <div class="row-lg-8" >
+            <label class="decorator">Add Description:</label>
+            <textarea class="form-control rounded-0" placeholder="Description..." id="hostel_description" value="" name="hostel_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+            <br><br>
+			</div>
+           <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL4(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img4')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img4" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL4(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL5(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img5')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img5" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL5(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL6(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img6')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img6" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL6(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+       <br><br>
+      <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px;"><span>Submit</span></button></center>
+      </form>
+	  </div>
+	  </div>
+
+
+
+
+
+                            <!--    Form 3 -->
+
+
+<div class="container wow fadeIn">
+    <div class="form-group ">
+    <form id="house_form" class="wow fadeInUp">
+
+        <center><h1>Houses</h1></center><hr>
+
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_house" value="" name="name_house">
+<input type="hidden" id="latitude" value="" name="latitude">
+<input type="hidden" id="longitude" value="" name="longitude">
+
+
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp No of Bedrooms :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-bed"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="house_no_bedrooms" placeholder="Enter the specific No. of Bedrooms" name="house_no_bedrooms" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp No of Bathrooms :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-shower"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_no_bathrooms" placeholder="Enter the specific No. of Bathrooms" name="house_no_bathrooms" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+            <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Tenants Prefered :</label>
+                    <select name="house_tenants_preffered" id="house_tenants_preffered" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Bachelor</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+
+                </div><br><br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Carpet Area :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_carpet_area" placeholder="Enter the specific Carpet Area" name="house_carpet_area" required>
+                </div></div>
+				<div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Super Buildup Area(sqft) :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_buildup_area" placeholder="Enter the specific Area in sqft" name="house_buildup_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+                </div></div>
+              <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Furnishing :</label>
+                    <select name="house_furnishing" id="house_furnishing" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Semifurnished</option>
+                        <option>Furnished</option>
+                        <option>Unfurnished</option>
+
+                    </select>
+                </div>
+
+      </div> <br><br><br><br>
+          <div class="row">
+                    <div class="col-lg-4">
+                        <label for="overlooking" class="decorator">&nbsp Overlooking :</label>
+						<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-road"></i>
+				</span>
+                        <input type="text" class="form-control" id="house_overlooking" placeholder="For eg. Garden/Park,supermarket" name="house_overlooking" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                    </div></div>
+
+              <div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_floor_no" placeholder="Enter your Specific Floor No." name="house_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+              <div class="col-lg-4">
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_price" placeholder="Enter the Genuine Price" name="house_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                  </div>
+
+              </div></div><br><br>
+			  <div class="row-lg-8">
+            <label class="decorator">&nbsp Add Description :</label>
+            <textarea class="form-control rounded-0" placeholder="Enter the Description" id="house_description" value="" name="house_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+            </div>
+			<br><br>
+           <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL7(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img7')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img7" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL7(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL8(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img8')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img8" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL8(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL9(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img9')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img9" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL9(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+          <br><br>
+        <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px;"><span>Submit</span></button></center>
+      </form>
+  </div>
+  </div>
+
+
+
+
+
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv1tJmX-EeixYFP9LTQMnR1IjUtLYa6Yk&libraries=places&callback=activatePlacesSearch"></script>
+    </body>
+</html>
+
+<!--Script for form-->
+<script>
+    function hide(){
+      document.getElementById('apartment_form').style.display="block";
+      document.getElementById('hostel_form').style.display="none";
+      document.getElementById('house_form').style.display="none";
+    }
+    function f(){
+    var s = document.getElementById('select_category_house').value;
+
+  if(s=="1"){
+    document.getElementById('apartment_form').style.display="block";
+    document.getElementById('hostel_form').style.display="none";
+    document.getElementById('house_form').style.display="none";
+	document.getElementById("name_apartment").value="Apartment";
+
+
+
+  }
+  if(s=="2"){
+    document.getElementById('apartment_form').style.display="none";
+    document.getElementById('hostel_form').style.display="block";
+    document.getElementById('house_form').style.display="none";
+	document.getElementById("name_hostel").value="Hostels";
+
+  }
+  if(s=="3"){
+    document.getElementById('apartment_form').style.display="none";
+    document.getElementById('hostel_form').style.display="none";
+    document.getElementById('house_form').style.display="block";
+	document.getElementById("name_house").value="House";
+
+  }
+
+  }
+
+    </script>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+
+    <!--Animate Css-->
+      <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+       <!--Wow JS-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script>
+      $(document).ready(function(){
+        alert("Hello");
+      });
+      </script>
+<style>
+.navbar-brand{
+animation-iteration-count:infinite;}
+
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+body {
+  margin: 0px;
+}
+nav {
+  padding: 24px;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  background-color:#B22222;
+}
+#nav-1 {
+  background: #B22222;
+}
+
+.link-1 {
+  transition: 0.3s ease;
+  background: #B22222;
+  color: #DAA520;
+  font-size: 20px;
+  text-decoration: none;
+  border-top: 4px solid #B22222;
+  border-bottom: 4px solid #B22222;
+  padding: 20px 0;
+  margin: 0 5px;
+}
+.link-1:hover {
+  border-top: 4px solid #ffffff;
+  border-bottom: 4px solid #ffffff;
+  padding: 6px 0;
+  text-decoration:none;
+  color: #DAA520;
+}
+
+</style>
+
+
+
+
+<style>
+    .btn {
+  border-radius: 4px;
+  background-color: #f4511e;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn:hover span {
+  padding-right: 25px;
+}
+
+.btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    .decorator{
+        border-top-left-radius:25px;
+        border-top-right-radius: 25px;
+        font-family: 'Play', sans-serif;
+
+    }
+
+        </style>
+
+		<style>
+
+ <!-- article, aside, figure, footer, header, hgroup,
+  menu, nav, section { display: block; }
+	-->
+	.image-upload
+{
+    display: block;
+}
+		input[type=text]:focus {
+    background-color:rgba(255, 255, 150, 0.35);
+
+}
+        #map {
+            height:515px;
+            width: 780px;
+
+        }
+        select {
+        width: 150px;
+        margin: 10px;
+    }
+    select:focus {
+        min-width: 150px;
+        width: auto;
+        background-color: rgba(255, 255, 150, 0.35);
+    }
+        </style>
+
+
+
+
+
+
+
+<!-- script for AutoComplete Search Bar-->
+        <script>
+            function activatePlacesSearch(){
+
+                var input = document.getElementById('searchtextfield');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                    var place = autocomplete.getPlace();
+                    var pname = place.name;
+                    var plat = place.geometry.location.lat();
+                    var plng = place.geometry.location.lng();
+                    alert("For *"+pname+"* Latitude is: *"+plat+"* and Longitude is: *"+plng+"*");
+                    document.getElementById("latitude").value=plat;
+          					document.getElementById("longitude").value=plng;
+          					initMap(pname,plat,plng);
+                    $('#myModal').modal('show');
+
+
+                });
+            }
+        </script>
+
+        <!-- Script for drag and drop feature on map-->
+
+        <script>
+            var np;
+            function initMap(pname,plat,plng) {
+                var uluru =  {lat: plat, lng: plng};
+                var map = new google.maps.Map(
+                    document.getElementById('map'), {zoom: 15, center: uluru});
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    title: pname,
+                    draggable: true,
+                    map: map
+                });
+                google.maps.event.addListener(marker, 'dragend', function (event) {
+                    var nplat = event.latLng.lat();
+                    var nplng = event.latLng.lng();
+                    var npname = getplace(nplat,nplng);
+                    document.getElementById("latitude").value=nplat;
+          					document.getElementById("longitude").value=nplng;
+                    alert("For *"+npname+"* Latitude is: *"+nplat+"* and Longitude is: *"+nplng+"*");
+                });
+                function getplace(nplat,nplng) {
+                    var latlng = new google.maps.LatLng(nplat, nplng);
+                    var geocoder = geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ 'latLng': latlng },
+                    function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[1]) {
+                            np = results[1].formatted_address;
+                            }
+                        }
+                    });
+                    return (np);
+                }
+            }
+        </script>
+
+
+
+
+
+
+  </head>
+  <body>
+  <!--Wow JS Activation-->
+       <script>
+              new WOW().init();
+      </script>
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color:#B22222;" id="nav-1">
+<a class="navbar-brand wow pulse"><img class="d-block w-80 logo wow blink"src="{% static 'img/house.png' %}" alt="First slide" style="height:66px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto" style="font-size:23px;">
+
+    <li class="nav-item">
+            <a class="nav-link link-1" href="index.php" style="color:#DAA520;">Home<span class="sr-only">(current)</span></a>
+          </li>
+      <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Rent-in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Rent-out</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Log-in</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Sign-up</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body onload="hide()" style="font-family: 'Noto Serif', serif; font-size:18px">
+
+
+
+        <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:6000px; height:315px">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title"><center><strong>gDrag the pointer to your location</strong></center></h2>
+        </div>
+        <div class="modal-body">
+          <div id="map"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="container" style="margin-top:107px">
+    <center><h1 class="wow fadeInUp">Rent In your House</h1></center>
+      <hr>
+    <div>  <!-- div for form-->
+    <form action="">
+        <div class="row">
+            <div class="col-lg-3 wow fadeInUp">
+            <label class="decorator">&nbsp&nbsp Type of Properties :</label>
+                <select class="form-control decorator" id="select_category_house" onclick="f()" style="width:180px;height:44px;">
+                    <option value="1">Apartment</option>
+                    <option value="2">Hostel</option>
+                    <option value="3">Houses</option>
+                </select>
+            </div>
+                <div class="col-lg-9 wow fadeInUp">
+
+            <label class="decorator">&nbsp Address :</label>
+			<div class="input-group input-group-lg" style="margin-top:8px">
+  <span class="input-group-addon" >
+    <i class="fa fa-search"></i>
+  </span>
+            <input id="searchtextfield" class="form-control rounded-0" type="text"  size="50"
+			placeholder="Enter the location" name="address" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required/>
+</div>
+		   </div>
+
+
+        </div>
+
+    </form>
+</div> <!-- end of div form-->
+  </div>
+  <div class="container wow fadeIn">
+    <div class="wow fadeInUp form-group ">
+    <form id="apartment_form">
+      {% csrf_token %}
+
+        <center><h1>Apartments</h1></center><hr>
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_apartment" value="name_apartment">
+<input type="text" id="latitude" value="" name="latitude">
+<input type="text" id="longitude" value="" name="longitude">
+<input type="hidden" id="desc" value="" name="description">
+
+
+            <div class="row">
+                <div class="col-lg-4">
+
+                    <label for="number" class="decorator">&nbsp Apartment Name/No :</label>
+						<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-building"></i>
+				</span>
+                    <input type="text" class="form-control" id="number" placeholder="Enter the apartment name" name="apartment_name" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+                <div class="col-lg-4">
+                    <label for="type" class="decorator">&nbsp&nbsp Apartment Type :</label>
+                    <select name="apartment_type" id="apartment_type" class="form-control decorator" style="width:250px;height:44px;">
+                        <option >Select</option>
+                        <option>One BHK</option>
+                        <option>Two BHK</option>
+                        <option>Three BHK</option>
+                        <option>Studio</option>
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Super Buildup Area(sqft) :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control " id="super_buildup_area" placeholder="Enter your Apartment Area in Sqft " name="super_buildup_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+                </div></div>
+            </div><br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Carpet Area :</label>
+<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control styling" id="apartment_carpet_area" placeholder="Enter the carpet area" name="apartment_carpet_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+              <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Furnishing :</label>
+                    <select name="apartment_furnishing" id="apartment_furnishing" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Semifurnished</option>
+                        <option>Furnished</option>
+                        <option>Unfurnished</option>
+
+                    </select>
+                </div>
+<div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_floor_no" placeholder="Enter the Specific Floor No." name="apartment_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;"style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+      </div> <br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="overlooking" class="decorator">&nbsp Overlooking :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-road"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_overlooking" placeholder="For eg. Garden/Park,Main Road" name="apartment_overlooking" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+					<div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Tenants Prefered :</label>
+                    <select name="tenant1" id="apartment_tenants" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Bachelor</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+              <div class="col-lg-4">
+                    <label for="m_cost" class="decorator">&nbsp Maintainance Cost :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_maintainance_cost" placeholder="Enter the Genune Maintainance cost" name="apartment_maintainance_cost" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+               </div><br><br><br>
+          <div class="row">
+                <div class="col-lg-4" >
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_price" placeholder="Enter the genune price of your property" name="apartment_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+
+              </div></div>
+			  <div class="col-lg-4">
+                    <label for="parking" class="decorator">&nbsp&nbsp&nbsp&nbsp Car Parking :</label><br>
+                        <input class="form-check-input" type="radio" name="apartment_parking" id="apartment_parking" value="option1">
+                            <label class="form-check-label" for="exampleRadios1">Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+
+
+                        <input class="form-check-input" type="radio" name="apartment_parking" id="apartment_parking" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+
+                </div>
+              </div><br><br>
+			  <div class="row">
+            <label class="decorator">Add Description:</label>
+            <textarea class="form-control rounded-0" placeholder="Description..." id="apartment_description" value="" name="apartment_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+
+
+      </div>     <br><br><br>
+          <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL1(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img1')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img1" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+ <input type='file' onchange="readURL1(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL2(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img2')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img2" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL2(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL3(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img3')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img3" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL3(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+         <br><br>
+        <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px"><span>Submit</span></button></center>
+      </form>
+      </div>
+  </div>
+
+
+
+        <!--    Form 2 -->
+
+
+
+      <div class="container wow fadeIn">
+       <div class=" form-group ">
+  <form id="hostel_form" class="wow fadeInUp">
+
+        <center><h1>Hostels</h1></center><hr><br>
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_hostel" value="name_hostel">
+<input type="hidden" id="latitude" value="" name="latitude">
+<input type="hidden" id="longitude" value="" name="longitude">
+<input type="hidden" id="desc" value="" name="description">
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Room Size :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="number" placeholder="Enter the specific area of your room" name="apartment" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+                <div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label><br>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="hostel_floor_no" placeholder="Enter your specific Floor No.&nbsp&nbsp&nbsp" name="hostel_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+  <div class="col-lg-4">
+                    <label for="type" class="decorator">&nbsp&nbsp Room Type :</label>
+                    <select name="hostel_room_type" id="hostel_room_type" class="form-control decorator" style="width:250px;height:44px;">
+                        <option>Select</option>
+                        <option>Single Seater</option>
+                        <option>Double Seater</option>
+                        <option>Triple Seater</option>
+
+                    </select>
+                </div>
+
+
+            </div><br><br><br><br>
+          <div class="row">
+		  <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Attached Bathroom :</label><br>
+                    <input class="form-check-input" type="radio" name="hostel_attached_bathroom" id="hostel_attached_bathroom" value="option1">
+                            <label class="form-check-label" >Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                <input class="form-check-input" type="radio" name="hostel_attached_bathroom" id="hostel_attached_bathroom" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+                </div>
+            <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp&nbsp&nbsp&nbsp Mess Facility :</label><br>
+                    <input class="form-check-input" type="radio" name="hostel_mess_facility" id="hostel_mess_facility" value="option1" >
+                            <label class="form-check-label" for="exampleRadios1">Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                <input class="form-check-input" type="radio" name="hostel_mess_facility" id="hostel_mess_facility" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+                </div>
+
+                    <div class="col-lg-4"> <label for="number" class="decorator">Other Facilities :</label><br>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Bedding" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Bedding</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="LED and FAN" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">LED and FAN</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="Study Desk and Chair" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Study Desk and Chair</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="Almirah" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Almirah</label><br>
+
+</div>
+                </div>
+
+      </div> <br>
+        <div class="row">
+              <div class="col-lg-4">
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="hostel_price" placeholder="Enter your Genune price" name="hostel_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                  </div>
+
+              </div></div><br><br>
+			  <div class="row-lg-8" >
+            <label class="decorator">Add Description:</label>
+            <textarea class="form-control rounded-0" placeholder="Description..." id="hostel_description" value="" name="hostel_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+            <br><br>
+			</div>
+           <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL4(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img4')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img4" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL4(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL5(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img5')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img5" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL5(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL6(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img6')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img6" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL6(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+       <br><br>
+      <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px;"><span>Submit</span></button></center>
+      </form>
+	  </div>
+	  </div>
+
+
+
+
+
+                            <!--    Form 3 -->
+
+
+<div class="container wow fadeIn">
+    <div class="form-group ">
+    <form id="house_form" class="wow fadeInUp">
+
+        <center><h1>Houses</h1></center><hr>
+
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_house" value="" name="name_house">
+<input type="hidden" id="latitude" value="" name="latitude">
+<input type="hidden" id="longitude" value="" name="longitude">
+
+
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp No of Bedrooms :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-bed"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="house_no_bedrooms" placeholder="Enter the specific No. of Bedrooms" name="house_no_bedrooms" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp No of Bathrooms :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-shower"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_no_bathrooms" placeholder="Enter the specific No. of Bathrooms" name="house_no_bathrooms" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+            <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Tenants Prefered :</label>
+                    <select name="house_tenants_preffered" id="house_tenants_preffered" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Bachelor</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+
+                </div><br><br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Carpet Area :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_carpet_area" placeholder="Enter the specific Carpet Area" name="house_carpet_area" required>
+                </div></div>
+				<div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Super Buildup Area(sqft) :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_buildup_area" placeholder="Enter the specific Area in sqft" name="house_buildup_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+                </div></div>
+              <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Furnishing :</label>
+                    <select name="house_furnishing" id="house_furnishing" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Semifurnished</option>
+                        <option>Furnished</option>
+                        <option>Unfurnished</option>
+
+                    </select>
+                </div>
+
+      </div> <br><br><br><br>
+          <div class="row">
+                    <div class="col-lg-4">
+                        <label for="overlooking" class="decorator">&nbsp Overlooking :</label>
+						<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-road"></i>
+				</span>
+                        <input type="text" class="form-control" id="house_overlooking" placeholder="For eg. Garden/Park,supermarket" name="house_overlooking" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                    </div></div>
+
+              <div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_floor_no" placeholder="Enter your Specific Floor No." name="house_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+              <div class="col-lg-4">
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_price" placeholder="Enter the Genuine Price" name="house_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                  </div>
+
+              </div></div><br><br>
+			  <div class="row-lg-8">
+            <label class="decorator">&nbsp Add Description :</label>
+            <textarea class="form-control rounded-0" placeholder="Enter the Description" id="house_description" value="" name="house_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+            </div>
+			<br><br>
+           <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL7(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img7')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img7" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL7(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL8(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img8')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img8" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL8(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL9(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img9')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img9" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL9(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+          <br><br>
+        <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px;"><span>Submit</span></button></center>
+      </form>
+  </div>
+  </div>
+
+
+
+
+
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv1tJmX-EeixYFP9LTQMnR1IjUtLYa6Yk&libraries=places&callback=activatePlacesSearch"></script>
+    </body>
+</html>
+
+<!--Script for form-->
+<script>
+    function hide(){
+      document.getElementById('apartment_form').style.display="block";
+      document.getElementById('hostel_form').style.display="none";
+      document.getElementById('house_form').style.display="none";
+    }
+    function f(){
+    var s = document.getElementById('select_category_house').value;
+
+  if(s=="1"){
+    document.getElementById('apartment_form').style.display="block";
+    document.getElementById('hostel_form').style.display="none";
+    document.getElementById('house_form').style.display="none";
+	document.getElementById("name_apartment").value="Apartment";
+
+
+
+  }
+  if(s=="2"){
+    document.getElementById('apartment_form').style.display="none";
+    document.getElementById('hostel_form').style.display="block";
+    document.getElementById('house_form').style.display="none";
+	document.getElementById("name_hostel").value="Hostels";
+
+  }
+  if(s=="3"){
+    document.getElementById('apartment_form').style.display="none";
+    document.getElementById('hostel_form').style.display="none";
+    document.getElementById('house_form').style.display="block";
+	document.getElementById("name_house").value="House";
+
+  }
+
+  }
+
+    </script>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
+{% load staticfiles %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+
+    <!--Animate Css-->
+      <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+       <!--Wow JS-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+  <script>
+      $(document).ready(function(){
+        alert("Hello");
+      });
+      </script>
+<style>
+.navbar-brand{
+animation-iteration-count:infinite;}
+
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+body {
+  margin: 0px;
+}
+nav {
+  padding: 24px;
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  background-color:#B22222;
+}
+#nav-1 {
+  background: #B22222;
+}
+
+.link-1 {
+  transition: 0.3s ease;
+  background: #B22222;
+  color: #DAA520;
+  font-size: 20px;
+  text-decoration: none;
+  border-top: 4px solid #B22222;
+  border-bottom: 4px solid #B22222;
+  padding: 20px 0;
+  margin: 0 5px;
+}
+.link-1:hover {
+  border-top: 4px solid #ffffff;
+  border-bottom: 4px solid #ffffff;
+  padding: 6px 0;
+  text-decoration:none;
+  color: #DAA520;
+}
+
+</style>
+
+
+
+
+<style>
+    .btn {
+  border-radius: 4px;
+  background-color: #f4511e;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn:hover span {
+  padding-right: 25px;
+}
+
+.btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+    .decorator{
+        border-top-left-radius:25px;
+        border-top-right-radius: 25px;
+        font-family: 'Play', sans-serif;
+
+    }
+
+        </style>
+
+		<style>
+
+ <!-- article, aside, figure, footer, header, hgroup,
+  menu, nav, section { display: block; }
+	-->
+	.image-upload
+{
+    display: block;
+}
+		input[type=text]:focus {
+    background-color:rgba(255, 255, 150, 0.35);
+
+}
+        #map {
+            height:515px;
+            width: 780px;
+
+        }
+        select {
+        width: 150px;
+        margin: 10px;
+    }
+    select:focus {
+        min-width: 150px;
+        width: auto;
+        background-color: rgba(255, 255, 150, 0.35);
+    }
+        </style>
+
+
+
+
+
+
+
+<!-- script for AutoComplete Search Bar-->
+        <script>
+            function activatePlacesSearch(){
+
+                var input = document.getElementById('searchtextfield');
+                var autocomplete = new google.maps.places.Autocomplete(input);
+                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                    var place = autocomplete.getPlace();
+                    var pname = place.name;
+                    var plat = place.geometry.location.lat();
+                    var plng = place.geometry.location.lng();
+                    alert("For *"+pname+"* Latitude is: *"+plat+"* and Longitude is: *"+plng+"*");
+                    document.getElementById("latitude").value=plat;
+          					document.getElementById("longitude").value=plng;
+          					initMap(pname,plat,plng);
+                    $('#myModal').modal('show');
+
+
+                });
+            }
+        </script>
+
+        <!-- Script for drag and drop feature on map-->
+
+        <script>
+            var np;
+            function initMap(pname,plat,plng) {
+                var uluru =  {lat: plat, lng: plng};
+                var map = new google.maps.Map(
+                    document.getElementById('map'), {zoom: 15, center: uluru});
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    title: pname,
+                    draggable: true,
+                    map: map
+                });
+                google.maps.event.addListener(marker, 'dragend', function (event) {
+                    var nplat = event.latLng.lat();
+                    var nplng = event.latLng.lng();
+                    var npname = getplace(nplat,nplng);
+                    document.getElementById("latitude").value=nplat;
+          					document.getElementById("longitude").value=nplng;
+                    alert("For *"+npname+"* Latitude is: *"+nplat+"* and Longitude is: *"+nplng+"*");
+                });
+                function getplace(nplat,nplng) {
+                    var latlng = new google.maps.LatLng(nplat, nplng);
+                    var geocoder = geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ 'latLng': latlng },
+                    function (results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[1]) {
+                            np = results[1].formatted_address;
+                            }
+                        }
+                    });
+                    return (np);
+                }
+            }
+        </script>
+
+
+
+
+
+
+  </head>
+  <body>
+  <!--Wow JS Activation-->
+       <script>
+              new WOW().init();
+      </script>
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color:#B22222;" id="nav-1">
+<a class="navbar-brand wow pulse"><img class="d-block w-80 logo wow blink"src="{% static 'img/house.png' %}" alt="First slide" style="height:66px"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ml-auto" style="font-size:23px;">
+
+    <li class="nav-item">
+            <a class="nav-link link-1" href="index.php" style="color:#DAA520;">Home<span class="sr-only">(current)</span></a>
+          </li>
+      <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Rent-in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Rent-out</a>
+      </li>
+        <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Log-in</a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link link-1" href="#" style="color:#DAA520">Sign-up</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body onload="hide()" style="font-family: 'Noto Serif', serif; font-size:18px">
+
+
+
+        <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg" style="width:6000px; height:315px">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h2 class="modal-title"><center><strong>gDrag the pointer to your location</strong></center></h2>
+        </div>
+        <div class="modal-body">
+          <div id="map"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="container" style="margin-top:107px">
+    <center><h1 class="wow fadeInUp">Rent In your House</h1></center>
+      <hr>
+    <div>  <!-- div for form-->
+    <form action="">
+        <div class="row">
+            <div class="col-lg-3 wow fadeInUp">
+            <label class="decorator">&nbsp&nbsp Type of Properties :</label>
+                <select class="form-control decorator" id="select_category_house" onclick="f()" style="width:180px;height:44px;">
+                    <option value="1">Apartment</option>
+                    <option value="2">Hostel</option>
+                    <option value="3">Houses</option>
+                </select>
+            </div>
+                <div class="col-lg-9 wow fadeInUp">
+
+            <label class="decorator">&nbsp Address :</label>
+			<div class="input-group input-group-lg" style="margin-top:8px">
+  <span class="input-group-addon" >
+    <i class="fa fa-search"></i>
+  </span>
+            <input id="searchtextfield" class="form-control rounded-0" type="text"  size="50"
+			placeholder="Enter the location" name="address" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required/>
+</div>
+		   </div>
+
+
+        </div>
+
+    </form>
+</div> <!-- end of div form-->
+  </div>
+  <div class="container wow fadeIn">
+    <div class="wow fadeInUp form-group ">
+    <form id="apartment_form">
+      {% csrf_token %}
+
+        <center><h1>Apartments</h1></center><hr>
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_apartment" value="name_apartment">
+<input type="text" id="latitude" value="" name="latitude">
+<input type="text" id="longitude" value="" name="longitude">
+<input type="hidden" id="desc" value="" name="description">
+
+
+            <div class="row">
+                <div class="col-lg-4">
+
+                    <label for="number" class="decorator">&nbsp Apartment Name/No :</label>
+						<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-building"></i>
+				</span>
+                    <input type="text" class="form-control" id="number" placeholder="Enter the apartment name" name="apartment_name" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+                <div class="col-lg-4">
+                    <label for="type" class="decorator">&nbsp&nbsp Apartment Type :</label>
+                    <select name="apartment_type" id="apartment_type" class="form-control decorator" style="width:250px;height:44px;">
+                        <option >Select</option>
+                        <option>One BHK</option>
+                        <option>Two BHK</option>
+                        <option>Three BHK</option>
+                        <option>Studio</option>
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Super Buildup Area(sqft) :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control " id="super_buildup_area" placeholder="Enter your Apartment Area in Sqft " name="super_buildup_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+                </div></div>
+            </div><br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Carpet Area :</label>
+<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control styling" id="apartment_carpet_area" placeholder="Enter the carpet area" name="apartment_carpet_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+              <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Furnishing :</label>
+                    <select name="apartment_furnishing" id="apartment_furnishing" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Semifurnished</option>
+                        <option>Furnished</option>
+                        <option>Unfurnished</option>
+
+                    </select>
+                </div>
+<div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_floor_no" placeholder="Enter the Specific Floor No." name="apartment_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;"style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+      </div> <br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="overlooking" class="decorator">&nbsp Overlooking :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-road"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_overlooking" placeholder="For eg. Garden/Park,Main Road" name="apartment_overlooking" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+					<div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Tenants Prefered :</label>
+                    <select name="tenant1" id="apartment_tenants" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Bachelor</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+              <div class="col-lg-4">
+                    <label for="m_cost" class="decorator">&nbsp Maintainance Cost :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_maintainance_cost" placeholder="Enter the Genune Maintainance cost" name="apartment_maintainance_cost" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+               </div><br><br><br>
+          <div class="row">
+                <div class="col-lg-4" >
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="apartment_price" placeholder="Enter the genune price of your property" name="apartment_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+
+              </div></div>
+			  <div class="col-lg-4">
+                    <label for="parking" class="decorator">&nbsp&nbsp&nbsp&nbsp Car Parking :</label><br>
+                        <input class="form-check-input" type="radio" name="apartment_parking" id="apartment_parking" value="option1">
+                            <label class="form-check-label" for="exampleRadios1">Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+
+
+                        <input class="form-check-input" type="radio" name="apartment_parking" id="apartment_parking" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+
+                </div>
+              </div><br><br>
+			  <div class="row">
+            <label class="decorator">Add Description:</label>
+            <textarea class="form-control rounded-0" placeholder="Description..." id="apartment_description" value="" name="apartment_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+
+
+      </div>     <br><br><br>
+          <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL1(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img1')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img1" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+ <input type='file' onchange="readURL1(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL2(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img2')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img2" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL2(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL3(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img3')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img3" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL3(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+         <br><br>
+        <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px"><span>Submit</span></button></center>
+      </form>
+      </div>
+  </div>
+
+
+
+        <!--    Form 2 -->
+
+
+
+      <div class="container wow fadeIn">
+       <div class=" form-group ">
+  <form id="hostel_form" class="wow fadeInUp">
+
+        <center><h1>Hostels</h1></center><hr><br>
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_hostel" value="name_hostel">
+<input type="hidden" id="latitude" value="" name="latitude">
+<input type="hidden" id="longitude" value="" name="longitude">
+<input type="hidden" id="desc" value="" name="description">
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Room Size :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="number" placeholder="Enter the specific area of your room" name="apartment" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+                <div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label><br>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="hostel_floor_no" placeholder="Enter your specific Floor No.&nbsp&nbsp&nbsp" name="hostel_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+  <div class="col-lg-4">
+                    <label for="type" class="decorator">&nbsp&nbsp Room Type :</label>
+                    <select name="hostel_room_type" id="hostel_room_type" class="form-control decorator" style="width:250px;height:44px;">
+                        <option>Select</option>
+                        <option>Single Seater</option>
+                        <option>Double Seater</option>
+                        <option>Triple Seater</option>
+
+                    </select>
+                </div>
+
+
+            </div><br><br><br><br>
+          <div class="row">
+		  <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Attached Bathroom :</label><br>
+                    <input class="form-check-input" type="radio" name="hostel_attached_bathroom" id="hostel_attached_bathroom" value="option1">
+                            <label class="form-check-label" >Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                <input class="form-check-input" type="radio" name="hostel_attached_bathroom" id="hostel_attached_bathroom" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+                </div>
+            <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp&nbsp&nbsp&nbsp Mess Facility :</label><br>
+                    <input class="form-check-input" type="radio" name="hostel_mess_facility" id="hostel_mess_facility" value="option1" >
+                            <label class="form-check-label" for="exampleRadios1">Yes</label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp;
+                <input class="form-check-input" type="radio" name="hostel_mess_facility" id="hostel_mess_facility" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">No</label>
+                </div>
+
+                    <div class="col-lg-4"> <label for="number" class="decorator">Other Facilities :</label><br>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Bedding" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Bedding</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="LED and FAN" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">LED and FAN</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="Study Desk and Chair" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Study Desk and Chair</label><br>
+
+                        <input class="form-check-input" type="checkbox" value="Almirah" name="hostel_other_facilities">
+                        <label class="form-check-label" for="hostel_other_facilities">Almirah</label><br>
+
+</div>
+                </div>
+
+      </div> <br>
+        <div class="row">
+              <div class="col-lg-4">
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="hostel_price" placeholder="Enter your Genune price" name="hostel_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                  </div>
+
+              </div></div><br><br>
+			  <div class="row-lg-8" >
+            <label class="decorator">Add Description:</label>
+            <textarea class="form-control rounded-0" placeholder="Description..." id="hostel_description" value="" name="hostel_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+            <br><br>
+			</div>
+           <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL4(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img4')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img4" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL4(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL5(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img5')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img5" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL5(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL6(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img6')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img6" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL6(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+       <br><br>
+      <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px;"><span>Submit</span></button></center>
+      </form>
+	  </div>
+	  </div>
+
+
+
+
+
+                            <!--    Form 3 -->
+
+
+<div class="container wow fadeIn">
+    <div class="form-group ">
+    <form id="house_form" class="wow fadeInUp">
+
+        <center><h1>Houses</h1></center><hr>
+
+<!-- Hidden latitude, longitude and description values -->
+<input type="hidden" id="name_house" value="" name="name_house">
+<input type="hidden" id="latitude" value="" name="latitude">
+<input type="hidden" id="longitude" value="" name="longitude">
+
+
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp No of Bedrooms :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-bed"></i>
+				</span>
+
+                    <input type="text" class="form-control" id="house_no_bedrooms" placeholder="Enter the specific No. of Bedrooms" name="house_no_bedrooms" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp No of Bathrooms :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-shower"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_no_bathrooms" placeholder="Enter the specific No. of Bathrooms" name="house_no_bathrooms" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+            <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Tenants Prefered :</label>
+                    <select name="house_tenants_preffered" id="house_tenants_preffered" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Bachelor</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+
+                </div><br><br><br><br>
+          <div class="row">
+                <div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Carpet Area :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_carpet_area" placeholder="Enter the specific Carpet Area" name="house_carpet_area" required>
+                </div></div>
+				<div class="col-lg-4">
+                    <label for="number" class="decorator">&nbsp Super Buildup Area(sqft) :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-square"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_buildup_area" placeholder="Enter the specific Area in sqft" name="house_buildup_area" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+
+                </div></div>
+              <div class="col-lg-4">
+                    <label class="decorator">&nbsp&nbsp Furnishing :</label>
+                    <select name="house_furnishing" id="house_furnishing" class="form-control decorator" style="width:250px;height:44px;">
+                       <option>Select</option>
+                        <option>Semifurnished</option>
+                        <option>Furnished</option>
+                        <option>Unfurnished</option>
+
+                    </select>
+                </div>
+
+      </div> <br><br><br><br>
+          <div class="row">
+                    <div class="col-lg-4">
+                        <label for="overlooking" class="decorator">&nbsp Overlooking :</label>
+						<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-road"></i>
+				</span>
+                        <input type="text" class="form-control" id="house_overlooking" placeholder="For eg. Garden/Park,supermarket" name="house_overlooking" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                    </div></div>
+
+              <div class="col-lg-4">
+                    <label for="f_number" class="decorator">&nbsp Floor No. :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-sort-amount-asc"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_floor_no" placeholder="Enter your Specific Floor No." name="house_floor_no" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                </div></div>
+
+
+              <div class="col-lg-4">
+                    <label for="price" class="decorator">&nbsp Price :</label>
+					<div class="input-group input-group-lg" style="margin-top:8px">
+					<span class="input-group-addon" >
+					<i class="fa fa-money"></i>
+				</span>
+                    <input type="text" class="form-control" id="house_price" placeholder="Enter the Genuine Price" name="house_price" style="border-top-right-radius: 25px;border-bottom-right-radius: 25px;" required>
+                  </div>
+
+              </div></div><br><br>
+			  <div class="row-lg-8">
+            <label class="decorator">&nbsp Add Description :</label>
+            <textarea class="form-control rounded-0" placeholder="Enter the Description" id="house_description" value="" name="house_description" rows="5" style="border-top-right-radius: 35px;border-bottom-right-radius: 35px;"></textarea>
+            </div>
+			<br><br>
+           <div class="row">
+
+
+
+          <div class="col-lg-4">
+
+               <div class="image-upload">
+    <script>
+     function readURL7(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img7')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img7" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL7(this);" />
+
+
+</div>
+              </div>
+              <div class="col-lg-4">
+             <div class="image-upload">
+			  <script>
+     function readURL8(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img8')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+
+   <img id="img8" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL8(this);" />
+    </div>
+</div>
+            <div class="col-lg-4">
+          <div class="image-upload">
+     <script>
+     function readURL9(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img9')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(150);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+
+            }
+        }
+
+		</script>
+		<img id="img9" src="upload.png" alt="your image" style="width:150px; height:150px"/>
+  <input type='file' onchange="readURL9(this);" />
+    </div>
+    </div>
+          </div>
+
+
+
+
+
+
+
+
+<!--
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" name="remember"> Remember me</label>
+      </div>
+
+      <button type="submit" class="btn btn-default">Submit</button>
+-->
+          <br><br>
+        <center><button type="submit" class="btn btn-danger" style="height:65px;width:150px;font-size:25px;border-radius:45px;"><span>Submit</span></button></center>
+      </form>
+  </div>
+  </div>
+
+
+
+
+
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv1tJmX-EeixYFP9LTQMnR1IjUtLYa6Yk&libraries=places&callback=activatePlacesSearch"></script>
+    </body>
+</html>
+
+<!--Script for form-->
+<script>
+    function hide(){
+      document.getElementById('apartment_form').style.display="block";
+      document.getElementById('hostel_form').style.display="none";
+      document.getElementById('house_form').style.display="none";
+    }
+    function f(){
+    var s = document.getElementById('select_category_house').value;
+
+  if(s=="1"){
+    document.getElementById('apartment_form').style.display="block";
+    document.getElementById('hostel_form').style.display="none";
+    document.getElementById('house_form').style.display="none";
+	document.getElementById("name_apartment").value="Apartment";
+
+
+
+  }
+  if(s=="2"){
+    document.getElementById('apartment_form').style.display="none";
+    document.getElementById('hostel_form').style.display="block";
+    document.getElementById('house_form').style.display="none";
+	document.getElementById("name_hostel").value="Hostels";
+
+  }
+  if(s=="3"){
+    document.getElementById('apartment_form').style.display="none";
+    document.getElementById('hostel_form').style.display="none";
+    document.getElementById('house_form').style.display="block";
+	document.getElementById("name_house").value="House";
+
+  }
+
+  }
+
+    </script>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

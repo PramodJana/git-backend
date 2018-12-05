@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+
+<html >
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+              <script>
+              new WOW().init();
+              </script>
+
+
+
+
+
+    <link href="style.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+<style>
+    a{
+text-decoration:none;
+}
+
+    #choice1
+    {
+        color:white;
+    }
+    #choice1 a:hover
+    {
+        text-decoration: none:
+    }
+
+
+
+
+    .background {
+    background: url("apartment.jpg");
+    height: 100%;
+    width: 100%;
+    background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+}
+.layer {
+    background-color: rgba(100, 15, 15, 0.75);
+    width: 100%;
+    height: 100%;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+/* select,option{
+  border:none;
+  outline:0px;
+
+} */
+#map {
+            height: 500px;
+            width: 100%;
+        }
+.left{
+  right: auto;
+  left: 0;
+}
+
+
+</style>
+</head>
+
+<body style="font-family: 'Noto Serif', serif;">
+
+    <div class="background" >
+
+            <div class="layer">
+
+			<div id="carouselExampleFade" class="carousel slide carousel-fade" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{% static 'img/aaa.png' %}" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'img/bbb.png' %}" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'img/ccc.png' %}" alt="Third slide">
+    </div>
+	<div class="carousel-item">
+      <img class="d-block w-100" src="{% static 'img/dddd.png' %}" alt="Fourth slide">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+            <div class="hero-text">
+                  <form method="post" >
+                    {% csrf_token %}
+                        <h1 class="wow fadeInUp" style="font-size:45px"> <b><em> I’d like to Rent-in</em></b>
+
+                <select style="border:none; background-color: rgba(15, 15, 80, 0.05);color:white;size:10px;" name="property_type" height="25">
+                  <option style="background-color: rgba(100, 15, 15, 0.75); color:white" value="Apartment"  >Apartment</option>
+                  <option style="background-color: rgba(100, 15, 15, 0.75);color:white" value="Hostels" >Hostels</option>
+
+                  <option style="background-color: rgba(100, 15, 15, 0.75);color:white" value="Houses">House</option>
+
+                </select>&nbsp;<b><em>in</em></b> &nbsp;</h1>
+
+<br>                <input class="wow fadeInUp" id="searchtextfield" type="search" size="40"  placeholder="Enter a location"  name="searchlocation"  style="border-radius:10px"/>
+
+<input type="hidden" id="latitude" name="latitude">
+<input type="hidden" id="longitude" name="longitude">
+<input type="hidden" id="placename" name="placename"><br><br>
+<label class="wow fadeInUp" style="font-size:45px"><b><em>in range</em></b>
+  <input type="text" class="form-control" id="apartment_maintainance_cost" placeholder="Enter the Range" name="property_range" style="width:150px;" required>
+</label>        <br><br><button class="wow fadeInUp" type="submit" style="border-radius: 10px;width: 102px;  background-color: orangered;visibility: visible; color: white; height: 45px;">Search</button>
+
+            </form>
+
+        <script src="{% static 'js/map_script.js' %}">
+
+        </script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?AIzaSyCv1tJmX-EeixYFP9LTQMnR1IjUtLYa6Yk&libraries=places&callback=activatePlacesSearch"></script>
+
+
+
+</div>
+
+
+
+    </div>
+        </div>
+
+
+
+
+
+
+</body>
+
+
+    <script>
+$(function() {
+
+  $('#submit').click(function() {
+    var value = $("input[name='gender']:checked").val();
+    $("#buy").html(value);
+    $('#myModal').modal('hide');
+  });
+});
+
+</script>
+
+
+
+
+
+</html>
+{% endblock %}

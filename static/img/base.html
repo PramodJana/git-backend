@@ -1,0 +1,273 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Local CSS File-->
+ <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- Local CSS ends here -->
+
+  <!-- SCRIPTS -->
+        <!-- JQuery -->
+        <script type="{% static 'text/javascript' %}" src="js/jquery-3.3.1.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="{% static 'text/javascript' %}" src="js/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="{% static 'text/javascript' %}" src="js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="{% static 'text/javascript' %}" src="js/mdb.min.js"></script>
+
+<!-- Script ends here -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<script src="https://use.fontawesome.com/3578007486.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Features</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Pricing</a>
+      </li>
+
+      </ul>
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+
+
+      <div>
+
+     <ul class="nav navbar-nav">
+         <li>
+  <a href="{% url 'register' %}" data-toggle="modal" data-target="#modalLRForm"><div class="btn btn-danger">Sign Up</div></a>
+</li>
+         &nbsp
+         <!-- <li>
+  <a href="{% url 'user_login' %}" data-toggle="modal" data-target="#modalLRForm"><div class="btn btn-danger">Sign In</div></a>
+</li> -->
+
+
+
+            {% if user.is_authenticated %}
+                <li class="nav-item"><a class='navbar-brand' href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li class="nav-item"><a class='navbar-brand' href="{% url 'user_login' %}">Login</a></li>
+            {% endif %}
+
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  -->
+<br>
+<br>
+<br>
+<br>
+<div class="container" >
+    {% block body_block %}
+    {% endblock %}
+</div>
+
+
+<!--Modal: Login / Register Form-->
+<div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal" role="document">
+      <!--Content-->
+      <div class="modal-content">
+
+          <!--Modal cascading tabs-->
+          <div class="modal-c-tabs">
+
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs tabs-2 light-blue darken-3" role="tablist">
+                  <li class="nav-item">
+                      <a class="nav-li+- nk active" data-toggle="tab" href="#panel7" role="tab"><i class="fa fa-user mr-1"></i> Sign Up</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#panel8" role="tab"><i class="fa fa-user-plus mr-1"></i> Sign In</a>
+                  </li>
+              </ul>
+
+              <!-- Tab panels -->
+              <div class="tab-content">
+                  <!--Panel 7-->
+                  <div class="tab-pane fade in show active" id="panel7" role="tabpanel">
+
+                     
+                      <div class="modal-body mb-1">
+                                <form enctype="multipart/form-data" method="post">
+                                    {% csrf_token %}
+
+                                    {% bootstrap_form user_form %}
+                                    <div class="text-center mt-2">
+                                        <button class="btn btn-info">Sign Up <i class="fa fa-sign-in ml-1"></i></button>
+                                    </div>
+                                </form>
+                    </div>
+
+
+                  </div>
+                  <!--/.Panel 7-->
+
+                  <!--Panel 8-->
+                  <div class="tab-pane fade" id="panel8" role="tabpanel">
+
+                      <!--Body-->
+                      <div class="modal-body">
+                         
+
+                          <div class="modal-body mb-1">
+                            <form enctype="multipart/form-data" method="post" action="{% url 'user_login' %}">
+                            {% csrf_token %}
+<!--
+                               Username <input type="text" name="username">
+                                Password <input type="password" name="password">
+                                <input type="submit">
+-->
+                                 <div class="md-form form-sm mb-5">
+                                  <i class="fa fa-envelope prefix"></i>
+                                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+
+                                  <input type="text" name="username" placeholder="Your email" class="form-control form-control-sm validate">
+
+                              </div>
+
+                              <div class="md-form form-sm mb-4">
+                                  <i class="fa fa-lock prefix"></i>
+
+                                  <input type="password" name="password" placeholder="Your Password" class="form-control form-control-sm validate">
+                              </div> 
+                                 <center><button class="btn btn-info">Sign In <i class="fa fa-sign-in ml-1"></i></button></center> 
+                                    
+                                            
+                                    
+                              </form>
+                          </div>
+
+
+
+
+                      </div>
+                     
+                  </div>
+                  <!--/.Panel 8-->
+              </div>
+
+          </div>
+      </div>
+      <!--/.Content-->
+  </div>
+</div>
+<!--Modal: Login / Register Form-->
+
+
+
+<h1> Find your dream home!!! </h1>
+<b>We know you have been tired of searching homes everywhere and if u have'nt got then this is the right place </b>
+
+<h3><b>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</b></h3>
+
+
+
+
+<!-- Footer -->
+<footer class="page-footer font-small cyan dar
++ken-3">
+
+    <!-- Footer Elements -->
+    <div class="container">
+
+      <!-- Grid row-->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-12 py-5">
+          <div class="mb-5 flex-center">
+
+            <!-- Facebook -->
+            <a class="fb-ic">
+              <i class="fa fa-facebook fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+            </a>
+            <!-- Twitter -->
+            <a class="tw-ic">
+              <i class="fa fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+            </a>
+            <!-- Google +-->
+            <a class="gplus-ic">
+              <i class="fa fa-google-plus fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+            </a>
+            <!--Linkedin -->
+            <a class="li-ic">
+              <i class="fa fa-linkedin fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+            </a>
+            <!--Instagram-->
+            <a class="ins-ic">
+              <i class="fa fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+            </a>
+            <!--Pinterest-->
+            <a class="pin-ic">
+              <i class="fa fa-pinterest fa-lg white-text fa-2x"> </i>
+            </a>
+
+          </div>
+        </div>
+        <!-- Grid column -->
+
+      </div>
+      <!-- Grid row-->
+
+    </div>
+    <!-- Footer Elements -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2018 Copyright:
+      <a href="https://mdbootstrap.com/bootstrap-tutorial/"></a>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+</body>
+</html>

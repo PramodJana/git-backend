@@ -1,0 +1,91 @@
+/* 
+.image-upload > input
+{
+   display: none;
+}
+input[type=text]:focus {
+   background-color: lightblue;
+
+}
+#map {
+           height:515px;
+           width: 780px;
+
+       }
+select {
+       width: 150px;
+       margin: 10px;
+   }
+select:focus {
+       min-width: 150px;
+       width: auto;
+   }
+
+    */
+     .btn {
+   border-radius: 4px;
+   background-color: #f4511e;
+   color: #FFFFFF;
+   text-align: center;
+   font-size: 28px;
+   transition: all 0.5s;
+   cursor: pointer;
+   margin: 5px;
+   }
+
+   .btn span {
+   cursor: pointer;
+   display: inline-block;
+   position: relative;
+   transition: 0.5s;
+   }
+
+   .btn span:after {
+   content: '\00bb';
+   position: absolute;
+   opacity: 0;
+   top: 0;
+   right: -20px;
+   transition: 0.5s;
+   }
+
+   .btn:hover span {
+   padding-right: 25px;
+   }
+
+   .btn:hover span:after {
+   opacity: 1;
+   right: 0;
+   }
+     .decorator{
+         border-top-left-radius:25px;
+         border-top-right-radius: 25px;
+         font-family: 'Play', sans-serif;
+
+     }
+
+   <!-- article, aside, figure, footer, header, hgroup,
+   menu, nav, section { display: block; }
+   -->
+   .image-upload
+   {
+     display: block;
+   }
+     input[type=text]:focus {
+     background-color:rgba(255, 255, 150, 0.35);
+
+   }
+         #map {
+             height:515px;
+             width: 780px;
+
+         }
+         select {
+         width: 150px;
+         margin: 10px;
+     }
+     select:focus {
+         min-width: 150px;
+         width: auto;
+         background-color: rgba(255, 255, 150, 0.35);
+     }

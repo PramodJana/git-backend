@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<html>
+<script>
+
+function redirect(){
+
+  setTimeout(function(){
+    document.getElementById("time").innerHTML="5";
+
+  },0000);
+  setTimeout(function(){ document.getElementById("time").innerHTML="4";},1000);
+  setTimeout(function(){ document.getElementById("time").innerHTML="3";},2000);
+  setTimeout(function(){ document.getElementById("time").innerHTML="2";},3000);
+
+  setTimeout(function(){ document.getElementById("time").innerHTML="1";
+document.getElementById("form1").submit();
+},4000);
+
+
+}
+
+</script>
+
+<body onload="redirect();">
+  <br>
+  <br>
+  <br>
+<center><h3>Thank You for your valuable response. This will help us to make your experience better.</h3>
+<h3>We'll soon redirect you to the previous page in <p style="font-size:32px;" id="time"></p> seconds</h3></center>
+<form action="{% url 'show_apartment' %}" method="post" id="form1">
+  {% csrf_token %}
+  <input type="hidden" id="" name="p_type" value="{{ p_type }}">
+  <input type="hidden" id="" name="property_id" value="{{ property_id }}">
+  <!--<input type="submit">  -->
+</form>
+
+<br><br><br><br><br><br><br>
+</body>
+</html>
+{% endblock %}
